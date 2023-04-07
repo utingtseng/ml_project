@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Bioinf- Data Analysis Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Home</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="introduction.html">Introduction</a></li>
+											<li><a href="methods.html">Methods</a></li>
+											<li><a href="results.html">Results</a></li>
+											<li><a href="discussion.html">Discussion</a></li>
+											<li><a href="conclusion.html">Conclusion & References</a></li>
+											<li><a href="supplementary.html">Supplementary</a></li>
+											<li><a target="popup" onclick="window.open('glossory.html','name','width=600,height=500')">Glossary</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+					<div class="sidenav">
+						<li class="icon solid fa-pen"> Introduction</li>
+						<a href="#ch1.1">1.1 Natural products with antimicrobial properties</a>
+						<a href="#ch1.2">1.2 MetaMiner</a>
+						<a href="#ch1.3">1.3 NeuRiPP</a>
+						<a href="#ch1.4">1.4 FBGAN</a>
+					</div>
+
+				<!-- Main -->
+					<article id="main">
+
+						<section class="wrapper style5">
+							<div class="inner">
+								<a name="ch1.1"></a>
+								<h2>1 Introduction</h>
+
+								<h3>1.1	Natural products with antimicrobial properties</h3>
+							<p>Microorganisms are a great source of naturally occurring bioactive compounds with diverse properties ranging from antimicrobial to anticancer <a class="tooltip">(1,2)<span class="tooltiptext">1. Bahar AA, Ren D. Antimicrobial Peptides. Pharmaceuticals. 2013 Dec;6(12):1543–75.<br>2. Deslouches B, Di YP. Antimicrobial peptides with selective antitumor mechanisms: prospect for anticancer applications. Oncotarget. 2017 Jul 11;8(28):46635–51.</span></a>. Many of those properties have been utilised in the development of antibiotics and have great implications in the medical field. However, since the 1990s,  there has been a sharp decline in the number of new antibiotics being discovered. It has been suggested by the GNPS molecular networking that many of the sequences that code for small compounds remain untapped in the genome <a class="tooltip">(3,4)<span class="tooltiptext">3. Cao L, Gurevich A, Alexander KL, Naman CB, Leão T, Glukhov E, et al. MetaMiner: A Scalable Peptidogenomics Approach for Discovery of Ribosomal Peptide Natural Products with Blind Modifications from Microbial Communities. Cell Syst. 2019 Dec 18;9(6):600-608.e4. <br>4. Gurevich A, Mikheenko A, Shlemov A, Korobeynikov A, Mohimani H, Pevzner PA. Increased diversity of peptidic natural products revealed by modification-tolerant database search of mass spectra. Nat Microbiol. 2018 Mar;3(3):319–27. </span></a>,  many of which could have bioactive properties that could relieve the pressure of the shortage of novel antimicrobial drugs. Widely used antibiotics, including b-lactams, tetracyclines, macrolides, and glycopeptides, are all synthesised by non-ribosomal machinery <a class="tooltip">(5)<span class="tooltiptext">5. M. Rowe S, R. Spring D. The role of chemical synthesis in developing RiPP antibiotics. Chem Soc Rev. 2021;50(7):4245–58. </span></a>. While scientists are struggling to battle the antibiotics resistance crisis, more attention has now been shifted to the newly found class of antimicrobial peptides (AMPs) named ribosomally synthesised and post-translationally modified peptides (RiPP). The area of research has experienced explosive growth in the 21st century, with the number of RiPP classes increasing two-fold between the years 2013 and 2021 <a class="tooltip">(5)<span class="tooltiptext">5. M. Rowe S, R. Spring D. The role of chemical synthesis in developing RiPP antibiotics. Chem Soc Rev. 2021;50(7):4245–58. </span></a>. 
+								</p>
+								<p>As opposed to non-ribosomal peptides, RiPP is synthesised by the ribosomes and requires a series of post-translational modifications, carried out by RiPP tailoring enzymes (RTEs). Typically, a RiPP is synthesised as a precursor peptide (PP) which goes through the modifications by RTEs before cleavage into the mature peptide <a class="tooltip">(6)<span class="tooltiptext">6. Arnison PG, Bibb MJ, Bierbaum G, Bowers AA, Bugni TS, Bulaj G, et al. Ribosomally synthesized and post-translationally modified peptide natural products: overview and recommendations for a universal nomenclature. Nat Prod Rep. 2013 Jan;30(1):108–60.</span></a>. In bacteria, the sequences coding for precursor peptides and RTEs are often organised in a biosynthetic gene cluster (BGC). Although there are sequences coding for different enzymes serving various functions in a RiPP BGC <a class="tooltip">(7)<span class="tooltiptext">7. Moffat AD, Santos-Aberturas J, Chandra G, Truman AW. A User Guide for the Identification of New RiPP Biosynthetic Gene Clusters Using a RiPPER-Based Workflow. In: Barreiro C, Barredo JL, editors. Antimicrobial Therapies: Methods and Protocols [Internet]. New York, NY: Springer US; 2021 [cited 2022 Jun 9]. p. 227–47. (Methods in Molecular Biology). Available from: https://doi.org/10.1007/978-1-0716-1358-0_14</span></a>, RTEs and PPs are often used as indications for the discovery of novel RiPPs <a class="tooltip">(3,8,9)<span class="tooltiptext">3. Cao L, Gurevich A, Alexander KL, Naman CB, Leão T, Glukhov E, et al. MetaMiner: A Scalable Peptidogenomics Approach for Discovery of Ribosomal Peptide Natural Products with Blind Modifications from Microbial Communities. Cell Syst. 2019 Dec 18;9(6):600-608.e4. <br>8. Blin K, Wolf T, Chevrette MG, Lu X, Schwalen CJ, Kautsar SA, et al. antiSMASH 4.0—improvements in chemistry prediction and gene cluster boundary identification. Nucleic Acids Res. 2017 Jul 3;45(Web Server issue):W36–41. <br>9. Santos-Aberturas J, Chandra G, Frattaruolo L, Lacret R, Pham TH, Vior NM, et al. Uncovering the unexplored diversity of thioamidated ribosomal peptides in Actinobacteria using the RiPPER genome mining tool. Nucleic Acids Res. 2019 May 21;47(9):4624–37. </span></a>. Technical advances in the discovery of RiPPs have allowed the development of high throughput RiPP mining tools. While some tools take the class-dependent approach that starts the analysis by identifying RTEs, others take the class-independent approach and leverage the power of artificial intelligence to recognise patterns in sequences for the identification of PPs. Furthermore, <i>de novo</i> approaches have also been developed to produce artificially designed PPs. <a name="ch1.2"></a>The following sections explore one example for each of the above-mentioned strategies and give an overview of the tools evaluated in this project.</p>
+								
+								
+								<h3>1.2 MetaMiner</h3>
+								<p>The MetaMiner pipeline features the discovery of RiPPs via the matching of PP sequences to secondary metabolites in tandem mass spectra <a class="tooltip">(3)<span class="tooltiptext">3. Cao L, Gurevich A, Alexander KL, Naman CB, Leão T, Glukhov E, et al. MetaMiner: A Scalable Peptidogenomics Approach for Discovery of Ribosomal Peptide Natural Products with Blind Modifications from Microbial Communities. Cell Syst. 2019 Dec 18;9(6):600-608.e4. </span></a>. There are two modes for the identification of putative precursor peptides: motif-ORF mode and all-ORF mode. In the motif-ORF mode, the MetaMiner pipeline accepts output from existing BGC identification tools such as antiSMASH <a class="tooltip">(8)<span class="tooltiptext">8. Blin K, Wolf T, Chevrette MG, Lu X, Schwalen CJ, Kautsar SA, et al. antiSMASH 4.0—improvements in chemistry prediction and gene cluster boundary identification. Nucleic Acids Res. 2017 Jul 3;45(Web Server issue):W36–41. </span></a> and BOA <a class="tooltip">(10)<span class="tooltiptext">10. Morton JT, Freed SD, Lee SW, Friedberg I. A large scale prediction of bacteriocin gene blocks suggests a wide functional spectrum for bacteriocins. BMC Bioinformatics. 2015 Nov 11;16:381. </span></a>. Putative peptides are then extracted from the BGCs based on similarity to known peptides (Fig. 1). Although the motif-ORF strategy has the benefit of a speedy processing time, novel RiPPs with little similarity to known RiPP are likely to be missed due to both antiSMASH and BOA relying on motif-finding when identifying BGCs and that BGCs that do not possess known motifs are often overlooked. Meanwhile, the all-ORF mode considers a greater number of open reading frames (ORFs) and has a longer processing time. In this mode, all six reading frames are translated into protein sequences and subjected to HMMER <a class="tooltip">(11)<span class="tooltiptext">11. Eddy SR. Accelerated Profile HMM Searches. PLOS Comput Biol. 2011 Oct 20;7(10):e1002195. </span></a> to identify modification enzymes known to be involved in the synthesis of RiPPs (Fig. 1). Putative BGCs are then generated by creating 10k-windows centred at the modification enzymes. ORFs within the putative BGCs are screened and those with lengths below the pre-determined threshold are considered putative PPs. Subsequently, PP candidates go through blind modifications, which include any combination of modification enzymes that are identified in the BGC, to simulate the synthesis of RiPP (Fig. 2). Theoretical spectra of the post-translationally modified sequences are then used to match with the input spectra. To ensure the validity of a match, a decoy strategy is used to calculate the false discovery rate of the matches. For each putative precursor peptide, a decoy sequence is produced by randomly shuffling the amino acid sequence while maintaining the overall structure. A significant peptide-spectrum match is produced when only the target sequence produces a high-scoring match with the candidate spectrum.</p>
+								
+								<img src="images/fig_1.jpg" width="100%">
+								<h6><b>Figure 1. All-ORF mode and motif-ORF mode of the MetaMiner pipeline.</b>
+									All-ORF mode accepts raw sequence files and carries out ORF search in all 6 frames; motif-ORF mode accespts output from external BGC analysis tools such as AntiSMASH and BOA.
+
+								</h6>
+								<img src="images/fig_2.jpg" width="100%">
+								<a name="ch1.3"></a>
+								<h6><b>Figure 2. Construction of target and decoy RiPPs.</b>
+									Precursor peptides are subjected to post-translatonal modifications by modification enzymes in all possible combinations to generate putative RiPPs. The decoy RiPP are produced by randomly shuffling the sequences before the modification stage. </h6>
+
+								<h3>1.3 NeuRiPP</h3>
+								<p>While MetaMiner provides a promising method of discovering novel RiPP in a high throughput fashion, the method requires knowledge of the modification enzymes involved in RiPP synthesis. It has been shown that the false characterisation of some RiPP classes hinders the discovery of RiPP precursor enzymes. NeuRiPP <a class="tooltip">(12)<span class="tooltiptext">12. De Los Santos, C EL. NeuRiPP: Neural network identification of RiPP precursor peptides. Sci Rep. 2019 Sep 16;9(1):13406. </span></a> is a bioinformatics tool that allows the identification of precursor peptide sequences in a class independent manner. The programme contains five neural network architectures and optimal weights to the corresponding architecture. The architectures are pre-trained with a dataset containing RiPP positive and RiPP negative sequences. The positive dataset includes sequences that are either experimentally verified or predicted with existing RiPP discovery tools, including PRISM <a class="tooltip">(13)<span class="tooltiptext">13. Skinnider MA, Johnston CW, Gunabalasingam M, Merwin NJ, Kieliszek AM, MacLellan RJ, et al. Comprehensive prediction of secondary metabolite structure and biological activity from microbial genome sequences. Nat Commun. 2020 Nov 27;11(1):6058. </span></a>, ThioFinder <a class="tooltip">(14)<span class="tooltiptext">14. Li J, Qu X, He X, Duan L, Wu G, Bi D, et al. ThioFinder: A Web-Based Tool for the Identification of Thiopeptide Gene Clusters in DNA Sequences. PLOS ONE. 2012 Sep 24;7(9):e45878. </span></a>, RiPPER <a class="tooltip">(9)<span class="tooltiptext">9. Santos-Aberturas J, Chandra G, Frattaruolo L, Lacret R, Pham TH, Vior NM, et al. Uncovering the unexplored diversity of thioamidated ribosomal peptides in Actinobacteria using the RiPPER genome mining tool. Nucleic Acids Res. 2019 May 21;47(9):4624–37. </span></a> and RODEO <a class="tooltip">(15)<span class="tooltiptext">15. Tietz JI, Schwalen CJ, Patel PS, Maxson T, Blair PM, Tai HC, et al. A new genome-mining tool redefines the lasso peptide biosynthetic landscape. Nat Chem Biol. 2017 May;13(5):470–8. </span></a>. The negative dataset contains sequences that have previously been used in the negative set in other RiPP research. 
+									Peptides in the training dataset are converted into 20x120 matrices before training. Those sequences that are longer than 120 residues were truncated and those that are shorter are padded with 0s. For the training of all five neural networks, the adam optimiser and cross-entropy loss function were used. Additionally, an additional measure was considered for the difference in the number of sequences between the positive and the negative dataset. Since the negative set is much larger than the positive set, the negative set was down-sampled to 35% of its original population and was resampled every 5 rounds in the training process. 
+									To carry out an analysis using NeuRiPP, one determines the neural network and decides to either use the pre-trained optimal weight for the neural network or train with their dataset. In the beginning stage, NeuRiPP converts input amino acid sequences into 20x120 matrices like in the training process.  The main neural network then classifies the input sequence either as RiPP coding or not RiPP coding (Fig. 3). The programme is accessible as a command-line tool and is available from the following GitHub repository <a href="https://github.com/emzodls/neuripp/" target=”_blank”>https://github.com/emzodls/neuripp/</a>. 
+								</p>
+								<img src="images/fig_3.jpg" width="100%">
+								<a name="ch1.4"></a>
+								<h6><b>Figure 3. High-level workflow of NeuRiPP.</b>
+									Peptide sequences are first converted into 20x120 matrices and subsequently classified into either precursor peptide or not precursor peptide. There are five different neural network architectures available for the main classification algorithm.
+								</h6>
+
+								
+								<h3>1.4 FBGAN</h3>
+								<p>The Feedback Generative Adversarial Network (FBGAN) is a neural network constructed with the intention to generate AMPs in a <i>de novo</i> fashion <a class="tooltip">(16)<span class="tooltiptext">16. Gupta A, Zou J. Feedback GAN for DNA optimizes protein functions. Nat Mach Intell. 2019 Feb;1(2):105–11. </span></a>. The core of FBGAN is based on a classical Generative Adversarial Network (GAN), which consists of one generative neural network that produces novel sequences and one discriminative neural network that determines whether a peptide passes as a naturally occurring peptide. 
+									The FBGAN was proposed with an additional component, namely the feedback component, compared to a classic GAN <a class="tooltip">(17)<span class="tooltiptext">17. Aggarwal A, Mittal M, Battineni G. Generative adversarial network: An overview of theory and applications. Int J Inf Manag Data Insights. 2021 Apr 1;1(1):100004. </span></a> (Fig. 4a). The added feedback component is a neural network that determines the probability that the newly generated sequence possesses antimicrobial properties (Fig. 4b). Those sequences that are predicted with high probability are passed to the discriminative neural network to replace a portion of the original training dataset (Fig. 4c). This process allows the effectively real sequences in the discriminator to gradually shift to those newly synthesised sequenced with predicted antimicrobial properties. In other words, the objective for the discriminator transforms from predicting a naturally occurring peptide to predicting a peptide with antimicrobial properties.
+									</p>
+								<img src="images/fig_4.jpg" width="100%">
+								<h6><b>Figure 4. Classical GAN and feedback GAN. a)</b>
+									A classical GAN conataining one generator and one discriminator. The output is determined by the probability of a synthetic sequence being an authentic nucleotide sequence. 
+									<b> b)</b>A blackbox functional analyser that outputs a score for any criteria one wishes to implement.
+									<b>c)</b> The FBGAN is a classical GAN coupled with a functional analyser in which n number of high scoring sequences are passed to the discriminator to replace n number of sequences in the discriminaotr’s training data.(extracted from Gupta A, Zou J. 2019)</h6>
+
+							</div>
+
+						</section>
+						<section class="wrapper style5">
+							<ul class="actions special">
+								<li><a href="index.html" class="button primary fit">Home</a></li>
+								<li><a href="methods.html" class="button primary fit">Methods</a></li>
+							</ul>
+						</section>
+					</article>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="https://www.imperial.ac.uk/life-sciences/postgraduate/masters-courses/msc-in-bioinformatics-and-theoretical-systems-biology/" target="_blank" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="mailto: yuting.tseng21@imperial.ac.uk" target="_blank" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>YTT16</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

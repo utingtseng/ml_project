@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Bioinf- Data Analysis Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Home</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="introduction.html">Introduction</a></li>
+											<li><a href="methods.html">Methods</a></li>
+											<li><a href="results.html">Results</a></li>
+											<li><a href="discussion.html">Discussion</a></li>
+											<li><a href="conclusion.html">Conclusion & References</a></li>
+											<li><a href="supplementary.html">Supplementary</a></li>
+											<li><a target="popup" onclick="window.open('glossory.html','name','width=600,height=500')">Glossary</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+					<div class="sidenav">
+						<li class="icon solid fa-brain"> Discussion</li>
+						<a href="#ch4.1">4.1 Reproducibility of the MetaMiner paper</a>
+						<a href="#ch4.2">4.2	Potential of uncovering hidden sequences by incorporating elicitor screening</a>
+						<a href="#ch4.3">4.3 NeuRiPP</a>
+						<a href="#ch4.4">4.4 Integration of NeuRiPP into MetaMiner for class independent RiPP discovery</a>
+						<a href="#ch4.5">4.5 Double Feedback GAN</a>
+					</div>
+				<!-- Main -->
+					<article id="main">
+						<section class="wrapper style5">
+							<div class="inner">
+								<a name="ch4.1"></a>
+								<h2>4 Discussion</h2>
+								<h3>4.1	Reproducibility of the MetaMiner paper</h3>
+								<p>
+									A total of 8 significant matches were expected for the 27 strains of bacteria analysed, but only 3 significant matches were reproduced. There are two main contributing factors to the low reproducibility:
+								</p>
+								<h3>4.1.1 Data used in the original analysis was not readily accessible</h3>
+								<p>
+									Firstly, the low data availability of the paper made it difficult to ensure that the data is the same as what was used in the original research. The paper lacks a consistent way of describing the strains used in the paper. In some datasets, the strains used were detailed in the method section while in other datasets they were indicated via references to other papers. Moreover, different forms of inconsistencies further increased the difficulty to obtain the data. Some of these includes:
+								</p>
+								<div class="col-6 col-12-medium">
+									<ol>
+										<li>In the SPACE dataset, the bacterial genera described in the method section don’t match up with the strains of bacteria listed in the referenced papers.</li>
+										<li>Some strains reported to generate matches in the results section were not mentioned in the methods section.</li>
+										<li>Some of the sequences used in the original analysis were not publicly available and the method of obtaining the sequence was not mentioned in the paper (e.g., <i>B. licheniformis ES-221</i>)</li>
+										<li>Multiple directories are accessible via FTP links, but the directories adopt slightly different organisation conventions. For example, in some cases, spectra files are stored in the ‘spectrum’ folder and other cases, the ‘spectrum’ folder contains three other folders with ambiguous names such as, ‘A1’, ‘MS’ and ‘R5’.</li>
+									</ol>
+								</div>
+								<p>The above-mentioned problems could be avoided with the implementation of better organisation. The following points are the proposed rules that could improve the reproducibility of a research project:</p>
+								<div class="col-6 col-12-medium">
+									<ol>
+										<li>Indicate the accession number of the sequences downloaded from public databases.</li>
+										<li>Have a consistent architecture for file organisation for smoother access and better understanding.</li>
+										<li>When it is not possible to include all information in the file name, attach a descriptive file to provide context. </li>
+									</ol>
+								</div>
+								<h3>4.1.2 Different results were produced when sequences are analysed individually and collectively</h3>
+								
+								<p>
+									By running all sequences both as individual runs and grouping multiple sequences for one run, it was shown that the two methods resulted in a different number of matches. The code pulled from the GitHub repository associated with the paper was examined in an attempt to uncover the cause of the inconsistency. The python wrapper revealed that when there are multiple sequences in the path specified as input, there is a function that dispatches the sequences as parallel workflows using the Python library joblib before processing each of them the same way as when only one sequence is supplied as input. This is in line with the observation that when a match is found by both ways of analysis, the precursor peptide, enzymatic modifications, and p-value of the match are always identical. In other words, the number of sequences per run should not influence the results. Further examination of the log files in runs where results were different revealed that the difference lies in the genome analysis stage. The same sequence file would succeed at genome analysis when passed as one single input and fail when pooled with other sequences in the same group, and vice versa. There is no pattern (for example, more sequences failed at genome analysis when multiple sequences are passed) to the error. <a name="ch4.2"></a>The main script carrying out the genome analysis is compressed into a binary and is therefore prevented further probing of the issue. I have tried to contact the author, but no informative response was returned. The cause for the issue is still inconclusive due to the time constraint of the project.
+								</p>
+								<h3>4.2	Potential of uncovering hidden sequences by incorporating elicitor screening</h3>
+								<p>
+									To have a successful match between a sequence and a spectrum using MetaMiner, two criteria need to be satisfied. Firstly, the ORF of the precursor peptide needs to be recognised as a potential ORF. Secondly, the RiPP needs to be expressed in the sample where the metabolomic data was analysed by mass spectrometry. Most RiPP discovery tools, including MetaMiner, take considerable measures to ensure that the first criterium is satisfied with the incorporation of well-developed ORF finding tools. However, the second criterium is often overlooked. Cryptic BGCs are hard to discover because a lot of them are not activated in normal laboratory environments. High throughput methods dedicated to resolving the issue have been developed. For example, Seyedsayamdost devised a strategy utilising a genetic reporter construct to allow the discovery of elicitors that activates cryptic BGCs <a class="tooltip">(19)<span class="tooltiptext">19. Seyedsayamdost MR. High-throughput platform for the discovery of elicitors of silent bacterial gene clusters. Proc Natl Acad Sci. 2014 May 20;111(20):7266–71. </span></a>. The platform could be added as an upstream extension of the current MetaMiner pipeline to determine the growth condition of the sample that is used for the collection of spectra data<a name="ch4.3"></a>. This proposed construct would undoubtedly increase the chances of uncovering novel RiPPs in silent BGCs by creating a better reflection of the metabolomic profile for matching.
+								</p>
+								<h3>4.3	NeuRiPP</h3>
+								<h3>4.3.1 Exploration of different neural network architectures in NeuRiPP</h3>
+								<p>
+									Three of the architectures available for NeuRiPP were explored. These three architectures are selected as they are those that produced the highest accuracy in the training stage. The results  were compared to those of the original NeuRiPP paper and a higher HMM hit rate among both NeuRiPP positive and negative sequences was found in comparison to the original paper. This is thought to be caused by the following two reasons. 
+								</p>
+								<p>
+									Firstly, the ORF finding tool used, Prodigal, is not adapted to finding ORFs coding for PPs. Instead, it looks for all ORF, including those of RTEs. This means that although some RTE coding sequences are correctly classified as NeuRiPP negative, they still produce HMM hits,  thus resulting in a high HMM hit rate in the NeuRiPP negative subset. Likewise, it also increases the HMM hit rate in the NeuRiPP positive subset by hitting the falsely classified sequences that are not genuine PPs. Prodigal short could be used as a preliminary filter for the search for PP as it is adapted from Prodigal to find putative PPs within close genetic distance to RTEs <a class="tooltip">(9)<span class="tooltiptext">9. Santos-Aberturas J, Chandra G, Frattaruolo L, Lacret R, Pham TH, Vior NM, et al. Uncovering the unexplored diversity of thioamidated ribosomal peptides in Actinobacteria using the RiPPER genome mining tool. Nucleic Acids Res. 2019 May 21;47(9):4624–37.</span></a>. However, Prodigal Short requires several manual changes in the script, the instructions of which can be found in the following GitHub repository: <a href="https://github.com/streptomyces/ripper" target="_blank">https://github.com/streptomyces/ripper</a>
+								</p>
+								<p>
+									Secondly, the HMMs used in the HMMscan process also contributed to the higher HMM hit rate in both NeuRiPP positive and negative datasets. All models available from the TIGRFAM <a class="tooltip">(20)<span class="tooltiptext">20. Li W, O’Neill KR, Haft DH, DiCuccio M, Chetvernin V, Badretdin A, et al. RefSeq: expanding the Prokaryotic Genome Annotation Pipeline reach with protein family model curation. Nucleic Acids Res. 2021 Jan 8;49(D1):D1020–8. </span></a> database were HMMpressed to produce the reference database for the scan, which enables an HMM hit to signify similarity to any existing protein instead of a PP. To correct the mistake, only HMMs for known PPs should be included in the HMMscan database. The list of HMMs for known PP can be found in the supplementary information section of the NeuRiPP paper.
+								</p>
+								<p>
+									Two mistakes are identified for the analysis and the suggested amendments were not carried out due to time constraints.
+								</p>
+								<h3>4.3.2 Class distribution of NeuRiPP positive + HMM hit is different between classifications made by different neural network architecture</h3>
+								<p>
+									The differential class distribution among predictions made by the three neural architectures demonstrated in figure 9 can provide insights into comparing the predictive power of each architecture for a certain class of RiPP. If one of the neural network architectures were significantly  better at predicting a few certain classes of RiPP, it would likely be a result of the overfitting of training data. Lassopeptide alone contributes to 45% of the positive training set. Having a predictive bias towards lassopeptide could potentially give the neural network an advantage scoring higher for its accuracy. This is observed in the results where lassopeptide contributes to a larger proportion of the final prediction made by the parallel CNN than the other two architectures analysed, but further analysis would be required to verify this bias. One technique to avoid the risk of bias towards one certain class would be the normalisation of the positive training set. However, this reduces the effective volume of data to use for the training set, and consequently the accuracy of the model. Therefore, a balance would need to be found in the normalisation of the data between the reduction of this bias and the reduction of data to train the  Currently, the uneven number of known RiPP sequences in each class is caused by the disparity in amount of research dedicated to them<a name="ch4.4"></a>. This would have less effect than with the increase in research in the under-studied classes, but for practicality, the user should be aware of the caveat and not rely on just one model. 
+								</p>
+								<h3>4.4	Integration of NeuRiPP into MetaMiner for class independent RiPP discovery</h3>
+								<p>
+									One of the limitations of MetaMiner is that the discovery of RiPP is carried out in a class-dependent manner. The discovery of RiPP is fully reliant on our knowledge of the modification enzymes involved in the synthesis of RiPP, and so a genuine PP coding ORF in proximity to an unknown RTE is likely to be overlooked. While this  problem would at first appear to be associated particularly with understudied classes, research has shown that false characterisation of RiPP BGCs hinders the predictive power of RiPP discovery tools even in well-studied classes. The class-independent nature of NeuRiPP has the potential to discover those PP sequences that are otherwise hard to identify. NeuRiPP leverages the strong predictive power of machine learning by searching for hidden patterns in PPs. This has the potential of expanding the range of PP sequences entering the matching stage of MetaMiner, including those that would normally be missed due to its distance to well-known modification enzymes. Several alterations must be implemented should NeuRiPP be integrated into the MetaMiner pipeline. Firstly, since the input sequence type of NeuRiPP is amino acid sequences,the six-frame translation currently available for the all-ORF mode is also required for analysis by NeuRiPP. Secondly, as demonstrated by finding in this analysis, NeuRiPP is still partially reliant on the filtering of the ORF finding tool. The predictive power of NeuRiPP is hindered using Prodigal, a pure prokaryotic ORF finding tool. An ORF finding tool that is RiPP specific, such as Prodigal Short, should be used to ensure the best results. Finally, the results of this analysis showed that certain neural network architectures might favour the prediction of a certain class of RiPP. This could be overcome by including a more balanced set of training data (subjected to the availability of the PP sequences in each class). Alternatively,<a name="ch4.5"></a> the user could choose to use a selection of architectures for an exhaustive search for all possible PPs. Nevertheless, this could significantly increase the processing time and should preferably be used on smaller datasets. 
+								</p>
+								<h3>4.5	Double Feedback GAN</h3>
+								<p>
+									FBGAN shed light on the possibility of de novo antimicrobial peptides synthesis, which are short and thus easy to engineer. However, the design of FBGAN focuses on traditional AMP that does not require extensive post-translation modifications. By considering the possible modifications that give rise to bioactive RiPPs, the neural network could potentially generate more candidate peptides that could benefit the medical field. The blind modification module of MetaMiner could be combined with the existing GAN to achieve this. The proposed double feedback GAN has two main components where the first half is the same as the FBGAN and the second half is a structural replica of the first. In the second component, instead of a generator that produces sequences that mimic a peptide, it modifies the output of the first component to generate a synthetic RiPP. Like the first analyser, the second analyser assesses the probability of the modified peptide retaining antimicrobial properties. Quantitative structure-activity relationship (QSAR) computational models would be a suitable candidate for the second analyser <a class="tooltip">(21,22)<span class="tooltiptext">21. Cardoso MH, Orozco RQ, Rezende SB, Rodrigues G, Oshiro KGN, Cândido ES, et al. Computer-Aided Design of Antimicrobial Peptides: Are We Generating Effective Drug Candidates? Front Microbiol [Internet]. 2020 [cited 2022 May 18];10. Available from: https://www.frontiersin.org/article/10.3389/fmicb.2019.03097<br> 22. Toropova MA, Veselinović AM, Veselinović JB, Stojanović DB, Toropov AA. QSAR modeling of the antimicrobial activity of peptides as a mathematical function of a sequence of amino acids. Comput Biol Chem. 2015 Dec;59 Pt A:126–30. </span></a>. The second discriminator determines whether the proposed synthetic sequences with PTMs are considered a real RiPP. The proposed double FBGAN can not only be used as a medium for de novo RiPP synthesis but also could be used as a framework to test synthetic RiPPs. While naturally occurring RiPP are always modified by a selection of RTEs from the same class, there has been some research that explores the possibility of producing hybrid-RiPPs that involve modifications carried out by RTEs from a mixture of classes <a class="tooltip">(23)<span class="tooltiptext">23. Hudson GA, Mitchell DA. RiPP Antibiotics: Biosynthesis and Engineering Potential. Curr Opin Microbiol. 2018 Oct;45:61–9. </span></a>. The framework could serve as a platform that allows the simulation of possible combinations of post-translational modifications and assessment of the antimicrobial properties of the artificially designed peptide.
+								</p>
+								<img src="images/fig_10.jpg" width="100%">
+								<h6><b>Figure 10. The structure of the proposed double feedback GAN.</b> The neural network consists of two generators (blue), two discriminators (orange) and two analysers (yellow). The main flow of the architecture is linear while high scoring results of the analysers are introduced to the corresponding discriminators.
+								</h6>
+
+
+							</div>
+						</section>
+						</section>
+						<section class="wrapper style5">
+							<ul class="actions special">
+								<li><a href="results.html" class="button primary fit">Results</a></li>
+								<li><a href="conclusion.html" class="button primary fit">Conclusion & References</a></li>
+							</ul>
+						</section>
+					</article>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="https://www.imperial.ac.uk/life-sciences/postgraduate/masters-courses/msc-in-bioinformatics-and-theoretical-systems-biology/" target="_blank" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="mailto: yuting.tseng21@imperial.ac.uk" target="_blank" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>YTT16</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

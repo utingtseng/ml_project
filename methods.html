@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Bioinf- Data Analysis Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Home</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="introduction.html">Introduction</a></li>
+											<li><a href="methods.html">Methods</a></li>
+											<li><a href="results.html">Results</a></li>
+											<li><a href="discussion.html">Discussion</a></li>
+											<li><a href="conclusion.html">Conclusion & References</a></li>
+											<li><a href="supplementary.html">Supplementary</a></li>
+											<li><a target="popup" onclick="window.open('glossory.html','name','width=600,height=500')">Glossory</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+				<div class="sidenav">
+					<li class="icon solid fa-desktop"> Methods</li>
+					<a href="#ch2.1">2.1 MetaMiner</a>
+					<a href="#ch2.2">2.2 NeuRiPP</a>
+					<a href="#ch2.3">2.3 FBGAN</a>
+				</div>
+				<!-- Main -->
+					<article id="main">
+
+						<section class="wrapper style5">
+
+							<div class="inner">
+								<a name="ch2.1"></a>
+								<h2>2 Methods</h2>
+								<h3>2.1 MetaMiner</h3>
+								<p>
+									Tandem sequences and spectra are required as input for the MetaMiner pipeline. Three of the datasets from the original paper, STANDARD, ACTI and SPACE, were used for the analysis. All analyses were carried out in the all-ORF mode and with all classes of RiPP considered.
+								</p>
+								<h3>2.1.1 Sequence data</h3>
+								<p>
+									For the STANDARD and ACTI datasets, only a selected number of strains were included in this analysis due to sequence availability. The strains used in the original paper were indicated via references to other papers. However, these bacterial species and strain names don’t match up with the strains indicated in the results section of the paper. After cross-checking the referenced papers and the results section, three strains were selected for each dataset. The amino acid sequences were downloaded from the NCBI website in the fasta format. For the SPACE dataset, the sequences were directly available from the FTP link provided on the paper. A total of 23 sequences files for 21 strains of bacteria are included in the SPACE dataset. </p>
+								<h3>2.1.2 Spectra data</h3>
+								<p>
+									The tandem metabolomic data was collected via mass spectrometry by the MetaMiner research group. The files were downloaded via the FTP link provided on the paper in an mfg format. Despite having down-sampled the sequences, all spectra files included in the original research were used for this analysis instead of the corresponding sub-sample due to unclear naming of the files and hence the inability to identify spectra files for specific sequences. </br>The authors were contacted via e-mail correspondence for data availability and clarification on the file names. However, no informative response was returned.</p>
+
+								<h3>2.1.3	Debugging attempts</h3>
+								<p>
+									The MetaMiner pipeline continued to report  errors in the genome analysis stage after detailed scrutiny of the code to debug the issue. Additionally, all sequences were analysed either as individual runs (path to one sequence as an input) or pooled together with other sequences in the same dataset in one single run (path to a directory as input). A custom python script was built to automate the process which can be found on the following GitHub repository alongside pseudocode to provide a high-level overview of the process: <a href="https://github.com/utingtseng/MSc_project2" target="_blank">https://github.com/utingtseng/MSc_project2</a>.
+								</p>
+								<h5>Pseudocode for running sequence files as separate runs</h6>
+								<pre><code>1. walk through a directory to get file names 
+2. parse the file names and create output directory/file names 
+3. generate commands for each sequence file 
+4. execute the commands</code><a name="ch2.2"></a></pre>
+								<p>
+									<br>
+								</p>
+
+								<h3>2.2 NeuRiPP</h3>
+								<p>
+									Fasta sequences of BGCs identified by antiSMASH were downloaded from the antiSMASH database. A maximum of 50 BGCs were extracted for each of the 15 RiPP classes resulting in a total of 689 BGCs in the analysis (Tab S1). The sequences were first subjected to Prodigal <a class="tooltip">(18)<span class="tooltiptext">18. Hyatt D, Chen GL, LoCascio PF, Land ML, Larimer FW, Hauser LJ. Prodigal: prokaryotic gene recognition and translation initiation site identification. BMC Bioinformatics. 2010 Mar 8;11(1):119. </span></a>, a prokaryotic gene finder, for the identification of ORFs. The ORFs identified by Prodigal contain sequences that could potentially code for precursor peptides. The amino acid output from Prodigal was then classified by the main classification script of NeuRiPP for PP predictions. Three different neural network architectures were tested for the classification. The architectures include linear convolutional neural network (CNN), parallel CNN, and linear CNN + long short-term memory (lstm) (Fig. 5), which are the three architectures with the highest reported accuracy on the training set. To assess the accuracy of the classification by NeuRiPP, HMMscan <a class="tooltip">(11)<span class="tooltiptext">11. Eddy SR. Accelerated Profile HMM Searches. PLOS Comput Biol. 2011 Oct 20;7(10):e1002195. </span></a> was performed on both sequences predicted to be RiPP-coding and not-RiPP-coding. In preparation for the HMMscan, 15,275 TIGRFAM models were downloaded from the NCBI website. The models were then indexed and compressed into binary data files using HMMpress <a class="tooltip">(11)<span class="tooltiptext">11. Eddy SR. Accelerated Profile HMM Searches. PLOS Comput Biol. 2011 Oct 20;7(10):e1002195. </span></a>.</p>
+								
+								<img src="images/fig_5.jpg" width="100%">
+								<a name="ch2.3"></a>
+								<h6><b>Figure 5. Neural network architectures used in NeuRiPP.</b> A figuristic representation of the individual layers in the neural networks. Layers in the linear CNN are arranges in a linear fashion whereas those in the parallel CNN starts with different branches and is later concatenated into one single layer before the dense layer. Both linear and parallel are compatible with and additional LSTM network for a more complex design of the network. (extracted from de los Santos, 2019)</h6>
+								<h3>2.3 FBGAN</h3>
+								<p>
+									The main script of FBGAN was run to generate <i>de novo</i> precursor peptide sequences. Some issues occurred as the version of TensorFlow used in the original code is no longer supported. The programme failed to find the checkpoint and recreate the neural network architecture. Although it proceeded to reconstruct the architecture from scratch, the programme was killed by the system due to memory leakage. The oldest available version of tensor flow was installed to try to resolve the issue. However, the same memory leakage issue occurred despite using older versions of the package.</p>
+						</section>
+						<section class="wrapper style5">
+							<ul class="actions special">
+								<li><a href="introduction.html" class="button primary fit">Introduction</a></li>
+								<li><a href="results.html" class="button primary fit">Results</a></li>
+							</ul>
+						</section>
+					</article>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="https://www.imperial.ac.uk/life-sciences/postgraduate/masters-courses/msc-in-bioinformatics-and-theoretical-systems-biology/" target="_blank" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="mailto: yuting.tseng21@imperial.ac.uk" target="_blank" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>YTT16</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
+
+<script>
+	// When the user clicks on <div>, open the popup
+	function myFunction() {
+	  var popup = document.getElementById("myPopup");
+	  popup.classList.toggle("show");
+	}
+</script>
